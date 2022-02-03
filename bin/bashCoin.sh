@@ -17,8 +17,8 @@ fromSocket=$(echo ${jsonMessage}  | jq -r '.socketID')
 [ ! -f $BLOCKPATH/blk.pending ] && touch $BLOCKPATH/blk.pending
 
 
-. $ROOTDIR/bin/functBlockFromNetwork.sh
-. $ROOTDIR/bin/functTransactionFromNetwork.sh
+. $ROOTDIR/bin/functBlock.sh
+. $ROOTDIR/bin/functTransaction.sh
 . $ROOTDIR/bin/functMapFunc2Code.sh
 . $ROOTDIR/bin/notification.sh
 . $ROOTDIR/bin/p2p.sh
