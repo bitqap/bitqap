@@ -16,6 +16,7 @@ getTransactionMessageForSign() {
         commandCode=$(mapFunction2Code ${FUNCNAME[0]} code)
         #fromSocket=$(echo ${jsonMessage}  | jq -r '.getTransactionMessageForSign')
         fromSocket=$(echo ${jsonMessage}  | jq -r '.socketID'|sed "s/\"//g")
+        requestID=$(echo ${jsonMessage}  | jq -r '.requestID'| sed "s/\"//g")
         SENDER=$(echo ${jsonMessage}  | jq -r '.ACCTNUM'|sed "s/\"//g")
         RECEIVER=$(echo ${jsonMessage}  | jq -r '.RECEIVER'|sed "s/\"//g")
         AMOUNT=$(echo ${jsonMessage}  | jq -r '.AMOUNT'|sed "s/\"//g")
@@ -50,7 +51,7 @@ getTransactionMessageForSign() {
 
         ## ADDING BY SYSTEM 
         CHANGE=`echo $TOTAL-$AMOUNT-$FEE | bc`
-        echo "{ \"command\":\"getTransactionMessageForSign\",\"messageType\":\"direct\", \"status\":0,\"destinationSocket\":$fromSocket,\"result\":{\"forReciverData\":\"$SENDER:$RECEIVER:$AMOUNT:$FEE:$dateTime\",\"forSenderData\":\"$SENDER:$SENDER:$CHANGE:0:$dateTime\"}}"
+        echo "{ \"command\":\"getTransactionMessageForSign\",\"responseID\":\"$requestID\",\"messageType\":\"direct\", \"status\":0,\"destinationSocket\":$fromSocket,\"result\":{\"forReciverData\":\"$SENDER:$RECEIVER:$AMOUNT:$FEE:$dateTime\",\"forSenderData\":\"$SENDER:$SENDER:$CHANGE:0:$dateTime\"}}"
 }
 
 pushSignedMessageToPending() {
@@ -62,6 +63,7 @@ pushSignedMessageToPending() {
     ##########################################################################################
     commandCode=$(mapFunction2Code ${FUNCNAME[0]} code)
     errorCode=$(mapFunction2Code ${FUNCNAME[0]})
+    requestID=$(echo ${jsonMessage}  | jq -r '.requestID'| sed "s/\"//g")
     fromSocket=$(echo ${jsonMessage}  | jq -r '.socketID')
     forReciverData=$(echo ${jsonMessage} | jq -r '.result' | jq -r '.[0]')
     forSenderData=$( echo ${jsonMessage} | jq -r '.result' | jq -r '.[1]')
@@ -74,10 +76,10 @@ pushSignedMessageToPending() {
         validateTransactionMessage $forSenderData  || exit 1
         echo "$forReciverData" >> $BLOCKPATH/blk.pending  && echo "$forSenderData"  >> $BLOCKPATH/blk.pending
         if [ $? -eq 0 ]; then
-                echo "{\"command\":\"notification\",\"status\":0,\"commandCode\":\"401\",\"status\":0,\"messageType\":\"broadcast\",\"result\":[\"$txIDReciever\",\"$txIDSender\"]}"
+                echo "{\"command\":\"notification\",\"responseID\":\"$requestID\",\"status\":0,\"commandCode\":\"401\",\"status\":0,\"messageType\":\"broadcast\",\"result\":[\"$txIDReciever\",\"$txIDSender\"]}"
         fi
      else
-        echo "{\"command\":\"pushSignedMessageToPending\",\"commandCode\":\"$commandCode\",\"status\":\"$errorCode\",\"messageType\":\"direct\",\"destinationSocket\":$fromSocket,\"commandCode\":\"$commandCode\"}"      
+        echo "{\"command\":\"pushSignedMessageToPending\",\"responseID\":\"$requestID\",\"commandCode\":\"$commandCode\",\"status\":\"$errorCode\",\"messageType\":\"direct\",\"destinationSocket\":$fromSocket,\"commandCode\":\"$commandCode\"}"      
      fi
 }
 

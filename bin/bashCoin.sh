@@ -266,6 +266,7 @@ checkAccountBal () {
         errorCode=$(mapERRORFunction2Code ${FUNCNAME[0]})
         fromSocket=$(echo ${jsonMessage}  | jq -r '.socketID')
         ACCTNUM=$(echo ${jsonMessage}  | jq -r '.ACCTNUM')
+        requestID=$(echo ${jsonMessage}  | jq -r '.requestID'| sed "s/\"//g")
         #ACCTNUM=$1
         #return_row=$2
         # Get the value of the last change transaction (the last time a user sent money back to themselves) if it exists
@@ -319,7 +320,7 @@ checkAccountBal () {
         TOTAL=`echo $LASTCHANGE+$RECAFTERCHANGE+$SUM | bc`
         #echo "Current Balance for $ACCTNUM:     $TOTAL"
         #echo "{\'command\':'getBalance\',\'publicKeyHASH256\':\'$ACCTNUM\',\'status\':\'0\',\'balance\':\'$TOTAL\',\'description\':\'none\'}"
-        echo "{\"command\":\"checkbalance\",\"commandCode\":\"$commandCode\",\"messageType\":\"direct\" , \"status\":\"0\",\"destinationSocket\":$fromSocket,\"result\":{\"publicKeyHASH256\":\"$ACCTNUM\",\"balance\":\"$TOTAL\"}}"
+        echo "{\"command\":\"checkbalance\",\"responseID\":\"$requestID\",\"commandCode\":\"$commandCode\",\"messageType\":\"direct\" , \"status\":\"0\",\"destinationSocket\":$fromSocket,\"result\":{\"publicKeyHASH256\":\"$ACCTNUM\",\"balance\":\"$TOTAL\"}}"
 }
 
 
