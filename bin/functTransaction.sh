@@ -157,11 +157,6 @@ getHistory() {
                                                 direction="in"
                                         fi
                                         txID=$(echo $message| awk -v FS=':' '{print $1}')
-                                        #sender=$(echo $message| awk -v FS=':' '{print $2}')
-                                        #recive=$(echo $message| awk -v FS=':' '{print $3}')
-                                        #amount=$(echo $message| awk -v FS=':' '{print $4}')
-                                        #fee=$(echo $message| awk -v FS=':' '{print $5}')
-                                        #datemined=$(echo $message| awk -v FS=':' '{print $6}')
                                         message=$(echo $message| awk -v FS=':' -v drct=$direction '{print $2":"$3":"$4":"$5":"$6":"drct}')
 					message=$txID:$message
                                         txHistory=$(cat $tempFolder/txHistory)
@@ -171,7 +166,7 @@ getHistory() {
         done
 	txMessage=$(cat $tempFolder/txHistory)
         txMessage=$(echo ${txMessage} | tr '\n' ' ')
-        echo "{\"command\":\"getHistory\",\"status\":\"0\",\"destinationSocket\":$fromSocket,\"messageType\":\"direct\",\"responseID\":\"$requestID\",\"account\":$txMessage}"
+        echo "{\"command\":\"getHistory\",\"status\":\"0\",\"commandCode\":\"$commandCode\",\"destinationSocket\":$fromSocket,\"messageType\":\"direct\",\"responseID\":\"$requestID\",\"txHistory\":$txMessage}"
 	[ -f $tempFolder/txHistory ] && rm -rf  $tempFolder
 }
 
