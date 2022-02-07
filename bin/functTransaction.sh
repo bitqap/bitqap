@@ -114,7 +114,7 @@ AddTransactionFromNetwork() {
         commandCode=$(mapFunction2Code ${FUNCNAME[0]} code)
         fromSocket=$(echo ${jsonMessage}  | jq -r '.socketID')
         txIDlist=[]
-        exceptSocket=[]
+                exceptSocket=[]
         for transactions in $(echo ${jsonMessage}| jq -r '.result'| jq -c .[]); do
                 transaction=$(echo ${transactions}| sed "s/\"//g")
                 txID=$(echo ${transaction}| awk -v FS=':' '{print $1}'| sed "s/\"//g")
@@ -129,4 +129,49 @@ AddTransactionFromNetwork() {
         echo $msg
 }
 
+
+getHistory() {
+        ## THIS IS 401 which trigger by first notification chain
+        commandCode=$(mapFunction2Code ${FUNCNAME[0]} code)
+        errorCode=$(mapFunction2Code ${FUNCNAME[0]})
+        fromSocket=$(echo ${jsonMessage}  | jq -r '.socketID')
+        account=$(echo ${jsonMessage}  | jq -r '.account')
+        requestID=$(echo ${jsonMessage}  | jq -r '.requestID'| sed "s/\"//g")
+        if [ ${#account} -eq 0 ] && [ ${#account} -eq 0 ]; then exit 1; fi
+        transactions={}
+        txHistory=[]
+	# because of during PIP e variables are not interchangebale inside loop. Nice Bash
+	tempFolder="$tempRootFolder/$RANDOM"
+	mkdir $tempFolder
+	echo $txHistory > $tempFolder/txHistory
+        
+        for blockFiles in $(ls $BLOCKPATH/*blk*); do
+                cat $blockFiles| 
+                                grep -v grep | \
+                                grep $account| \
+                                grep ^"TX"   | \
+                                awk -v FS=':' '{if ($2 != $3) print }'| while read message; do
+                                        if [ $(echo $message| awk -v FS=':' '{print $2}' ) == "$account" ]; then
+                                                direction="out"
+                                        else
+                                                direction="in"
+                                        fi
+                                        txID=$(echo $message| awk -v FS=':' '{print $1}')
+                                        #sender=$(echo $message| awk -v FS=':' '{print $2}')
+                                        #recive=$(echo $message| awk -v FS=':' '{print $3}')
+                                        #amount=$(echo $message| awk -v FS=':' '{print $4}')
+                                        #fee=$(echo $message| awk -v FS=':' '{print $5}')
+                                        #datemined=$(echo $message| awk -v FS=':' '{print $6}')
+                                        message=$(echo $message| awk -v FS=':' -v drct=$direction '{print $2":"$3":"$4":"$5":"$6":"drct}')
+					message=$txID:$message
+                                        txHistory=$(cat $tempFolder/txHistory)
+                                        txHistory=$(echo $txHistory| jq --arg dt $message '. + [ $dt ]')
+					echo $txHistory >  $tempFolder/txHistory
+                                done
+        done
+	txMessage=$(cat $tempFolder/txHistory)
+        txMessage=$(echo ${txMessage} | tr '\n' ' ')
+        echo "{\"command\":\"getHistory\",\"status\":\"0\",\"destinationSocket\":$fromSocket,\"messageType\":\"direct\",\"responseID\":\"$requestID\",\"account\":$txMessage}"
+	[ -f $tempFolder/txHistory ] && rm -rf  $tempFolder
+}
 

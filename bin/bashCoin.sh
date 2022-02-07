@@ -396,6 +396,10 @@ case "$command" in
                         listNewBlock $@
                         exit 0
                         ;;
+        getHistory)
+                        getHistory $@
+                        exit 0
+                        ;;
         getTransactionMessageForSign)
                         getTransactionMessageForSign $@
                         exit 0
@@ -460,7 +464,7 @@ case "$command" in
                         exit 1
                         ;;
         *)
-                        echo "{\"command\":\"doNothing\",\"description\":\"get more detail from https://bitqap.github.io/info\",\"messageType\":\"direct\"}"
+                        echo "{\"command\":\"nothing\",\"description\":\"get more detail from https://bitqap.github.io/info\",\"messageType\":\"direct\"}"
                         ;;
 esac
 
