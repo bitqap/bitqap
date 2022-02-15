@@ -252,7 +252,7 @@ mineGenesis () {
         printf -- "`cat $1`\n\n## Nonce: #################################################################################\n$NONCE\n" > 1.blk.solved
         #printf "$HASH\n" > 1.blk.hash
 
-  # Setup the next block.  Add previous hash first
+		# Setup the next block.  Add previous hash first
         printf "## Previous Block Hash: ###################################################################\n" >> 2.blk
         printf "$HASH\n\n" >> 2.blk
 }
@@ -363,7 +363,7 @@ case "$command" in
                         mine
                         exit 0
                         ;;
-        minegenesis|minegen)
+						minegenesis|minegen)
                         #shift
                         [[ -z $@ ]] && echo "Usage: ./bashCoin minegenesis <filename>" && echo "This command mines the first block (any file you like)." && exit 1
                         echo "Setup function is working now"

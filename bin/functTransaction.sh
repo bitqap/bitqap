@@ -71,6 +71,18 @@ pushSignedMessageToPending() {
     txIDReciever=$(echo ${forReciverData}| awk -v FS=':' '{print $1}')
     txIDSender=$(  echo ${forSenderData} | awk -v FS=':' '{print $1}')
     recordExist=$(cat $BLOCKPATH/blk.pending | grep  "$txIDReciever\|$txIDSender")
+	senderInRecieverMessage=$(echo ${forReciverData}| awk -v FS=':' '{print $2}')
+	senderInSenderrMessage1=$(echo ${forSenderData}| awk -v FS=':' '{print $2}')
+	senderInSenderMessage2=$(echo ${forSenderData}| awk -v FS=':' '{print $3}')
+	txDateInRecvierMessage=$(echo ${forReciverData} | awk -v FS=':' '{print $6}')
+	txDateInSenderMessage=$(echo ${forSenderData}  | awk -v FS=':' '{print $6}')
+	# control message inside result[] list
+	if [ "$senderInRecieverMessage"  != "$senderInSenderrMessage1" ] && 
+	   [ "$senderInSenderrMessage1" != "$senderInSenderMessage2" ]   &&
+	   [ "$txDateInRecvierMessage"  != "$txDateInSenderMessage" ]  ; then
+			echo "{\"command\":\"pushSignedMessageToPending\",\"responseID\":\"$requestID\",\"commandCode\":\"$commandCode\",\"status\":\"$errorCode\",\"messageType\":\"direct\",\"destinationSocket\":$fromSocket,\"description\":\"Messages are no matching\"}"      
+	fi
+	if [ $() ]
     if [ ${#recordExist} -le 5 ]; then 
         validateTransactionMessage $forReciverData || exit 1
         validateTransactionMessage $forSenderData  || exit 1
