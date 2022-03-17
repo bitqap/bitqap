@@ -19,12 +19,15 @@ discoverNode() {
    # this function will discover all connections from boot node (predefined)
    # day by day boot nodes will be updated once trusted
    
-   discoverFromBoot=$(python3 wsdump.py --eof-wait 2 -r -t '{"command":"peerInfo","messageType":"direct"}' ws://backbonix.com:8001 &)
+   discoverFromBoot=$(python3 wsdump.py --eof-wait 2 -r -t '{"command":"peerInfo","messageType":"direct"}' ws://backbonix.com:8001 ) &
    wait
    # adding patch. very bad solution.                                     \
    # when connection happend there are to JSON coming continusly.         \
    # Since, I could not distinguish connection type (miner, wallet, dump) \
-   # decided to parse '}' and work with second part.                      \
+   # decided to parse '}' and work with second part.
+   foundBootNode=0
+   [ ${#discoverFromBoot} -ge 7 ] && foundBootNode=1 || return 3
+   
    discoverFromBoot=$(echo ${discoverFromBoot}| awk -v FS='}' '{print $2"}]}"}')
    
    wLIST=[]               # weights
@@ -71,6 +74,8 @@ testConnection() {
 main() {
    # discover node
    discoverNode
+   [ $? -eq 0 ] && exit 1
+   
    # test discovered node
    while [ $(testConnection ${connID} ) -eq 1 ]; do   # retry until test is successfull
       reDiscoverNode
