@@ -74,7 +74,9 @@ testConnection() {
 main() {
    # discover node
    discoverNode
-   [ $? -eq 0 ] && exit 1
+   ret=$?
+   [ $ret -ne 0 ] && echo "cannot discover new NODE. Means cannot get update. Only can send who connected to it"
+   [ $ret -ne 0 ] && exit 1
    
    # test discovered node
    while [ $(testConnection ${connID} ) -eq 1 ]; do   # retry until test is successfull
