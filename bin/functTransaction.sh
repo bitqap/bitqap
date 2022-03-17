@@ -82,7 +82,7 @@ pushSignedMessageToPending() {
 	   [ "$txDateInRecvierMessage"  != "$txDateInSenderMessage" ]  ; then
 			echo "{\"command\":\"pushSignedMessageToPending\",\"responseID\":\"$requestID\",\"commandCode\":\"$commandCode\",\"status\":\"$errorCode\",\"messageType\":\"direct\",\"destinationSocket\":$fromSocket,\"description\":\"Messages are no matching\"}"      
 	fi
-	if [ $() ]
+	#if [ $() ]
     if [ ${#recordExist} -le 5 ]; then 
         validateTransactionMessage $forReciverData || exit 1
         validateTransactionMessage $forSenderData  || exit 1
