@@ -13,7 +13,7 @@
 # declare -a predefinedPeer=("161.97.69.136")
 
 # my IP:
-myIP=$(curl https://checkip.amazonaws.com)
+myIP=$(curl -s https://checkip.amazonaws.com)
 
 discoverNode() {
    # this function will discover all connections from boot node (predefined)
