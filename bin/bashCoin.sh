@@ -117,7 +117,7 @@ validateTransactionsForMine() {
         mkdir $tempFolder
         res=$(cat blk.pending | grep "TX*")
         cat blk.pending | grep "TX*"| while read transactions; do
-                if [ ${#transactions} -eq 0 ]; then break; fi
+		[ ${#transactions} -eq 0 ] && break
                 echo ${transactions}| awk -v FS=':' '{print $1":"$2":"$3":"$4":"$5":"$6}' > $tempFolder/transactions.msg
                 echo ${transactions}| awk -v FS=':' '{print $7}'| base64 -d > $tempFolder/transactions.pub
                 echo ${transactions}| awk -v FS=':' '{print $8}'| base64 -d > $tempFolder/transactions.sig
