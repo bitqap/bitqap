@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="" />
+        <meta property="og:url" content="" />
+        <meta property="og:image" content="" />
+        <meta property="og:image:width" content="200" />
+        <meta property="og:image:height" content="200" />
+        <meta property="og:site-name" content="" />
+        <meta property="og:description" content="..." />
+
+        <!-- <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('icons/apple-icon-57x57.png') }}">
+        <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('icons/apple-icon-60x60.png') }}">
+        <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('icons/apple-icon-72x72.png') }}">
+        <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('icons/apple-icon-76x76.png') }}">
+        <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('icons/apple-icon-114x114.png') }}">
+        <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('icons/apple-icon-120x120.png.png') }}">
+        <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('icons/apple-icon-144x144.png') }}">
+        <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('icons/apple-icon-152x152.png') }}">
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('icons/apple-icon-180x180.png') }}">
+        <link rel="icon" type="image/png" sizes="192x192"  href="{{ asset('icons/android-icon-192x192.png') }}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('icons/favicon-32x32.png') }}">
+        <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('icons/favicon-96x96.png') }}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('icons/favicon-16x16.png') }}">
+	--> 
+	<meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">
+
+        <title>BITQAP | BLOCKCHAIN OSS</title>
+    <link rel="icon" type="image/x-icon" href="img/ico/favicon.ico">
+        <!-- Jquery CDN -->
+	<script src="https://telegram.org/js/telegram-web-app.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+        <!-- Bootstrap CDN -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <!-- Google font : Roboto -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet">
+        <!-- Fontawesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+        <!-- Slick -->
+        <link rel="stylesheet" type="text/css" href="libs/slick/slick.css"/>
+        <link rel="stylesheet" type="text/css" href="libs/slick/slick-theme.css"/>
+        <!-- Main style -->
+        <link rel="stylesheet" href="css/base.css">
+        <link rel="stylesheet" href="css/layout.css">
+        <link rel="stylesheet" href="css/module.css">
+        <link rel="stylesheet" href="css/state.css">
+
+        <!-- Smooth show effect -->
+        <script>
+            $(document).ready(function(){
+                const ratio = .1
+                const options = {
+                root: null,
+                rootMargin: '0px',
+                threshold: ratio
+                }
+                const handleIntersect = function (entries, observer){
+                entries.forEach(function (entry){
+                    if (entry.intersectionRatio > ratio){
+                    entry.target.classList.add('reveal-visible')
+                    observer.unobserve(entry.target)
+                    }
+                })
+                }
+                const observer = new IntersectionObserver(handleIntersect, options)
+                document.querySelectorAll('[class*="reveal-"]').forEach(function (r) {
+                    observer.observe(r)
+                })
+            });
+        </script>
+    </head>
+
+    <body>
+        <!-- Main Header -->
+        <header class="main-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-6">
+                        <a href="#home" class="logo"><span class="color">BIT</span>QAP</a>
+                    </div>
+                    <div class="col-6 text-right">
+                        <span id="btnMenu" class="btn btn-secondary">
+                            <div class="bar1"></div>
+                            <div class="bar2"></div>
+                            <div class="bar3"></div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Menu -->
+        <div class="main-menu">
+            <div class="container">
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About us</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#team">Team</a></li>
+                        <!--<li><a href="#partners">Partners</a></li> -->
+                        <li><a href="#roadmap">Roadmap</a></li>
+                        <li><a href="#donate">Donation</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Main Wrapper -->
+        <div class="main-wrapper">
+
+            <!-- Main Banner -->
+            <section id="home" class="main-banner">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-md-8 reveal-2">
+                            <h1>open source blockchain<br>BITQAP</h1>
+                            <p><b>BITQAP</b> is open source cryptocurrency prototype on top of BASH and Python programming language.</br>BLOCKCHAIN</p>
+                            <a class="btn btn-md btn-primary" href="https://github.com/bitqap/bitqap">Download <i class="fab fa-github"></i></a>
+                <a class="btn btn-md btn-primary" href="https://bitqap.github.io/info">Documentation <i class="fab fa-github"></i></a><br>
+                <a class="btn btn-md btn-primary" href="https://t.me/+RR7bCoRTreI5Yjhi">Community<i class="fab fa-telegram-plane"></i></a>
+                <!-- <a class="btn btn-md btn-primary" href="https://track.bitqap.com/">Issue tracking &nbsp<i class="fab fa-bitbucket"></i></a> -->
+            </div>
+                        <div class="col-12 col-md-4 reveal-3">
+                            <img class="img-fluid" src="img/blockchain.png" alt="/">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About section -->
+            <section id="about" class="page-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 reveal-2">
+                            <hr>
+                            <h2 class="page-title">About us</h2>
+                        </div>
+                        <article class="col-12 col-md-6 reveal-2">
+                            <p><strong>BITQAP</strong> project was started as an in-house research project by Fariz Muradov. During research small piece of code extended functions and decided to complete this project by full base functions. Now project can be used as prototype. Now the project can be used as a prototype. Anyone who knows <em>BASH</em> and <em>Python</em> can download and use it for free.</p>   
+                        </article>
+                        <article class="col-12 col-md-6 reveal-2">
+                            <p>Therefore project is not fully ready, we are happy to receive commercial inquiry. Our goal is to get investment and speed up the development process. The project is still under development. Once the basic features are supported, we will announce for the community to contribute. We are working on documentation to make it easy for developers. </p>   
+                        </article>
+                        <article class="col-12 reveal-2 mt-4">
+                            <h3>Join us:</h3>
+                            <!-- <a target="_blank" href="#"><i class="fab fa-twitter"></i></a> -->
+                            <!-- <a target="_blank" href="#"><i class="fab fa-discord"></i></a> -->
+                            <a target="_blank" href="https://t.me/+EfTDaMmRdtk5OWEy"><i class="fab fa-telegram-plane"></i></a>
+                            <!-- <a target="_blank" href="#"><i class="fab fa-reddit-alien"></i></a> -->
+                            <a target="_blank" href="https://github.com/bitqap/bitqap"><i class="fab fa-github"></i></a>   
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features section -->
+            <section id="features" class="page-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 reveal-2">
+                            <hr>
+                            <h2 class="page-title">Our features</h2>
+                        </div>
+                        <article class="col-12 col-md-6 reveal-2">
+                            <i class="fas fa-network-wired"></i>
+                            <p>Peer-to-peer (P2P) computing or networking is a distributed application architecture that partitions tasks or workloads between peers. Peers are equally privileged, equipotent participants in the application. They are said to form a peer-to-peer network of nodes
+                            We use <strong>WebSocket</strong>. The WebSocket protocol enables interaction between a web browser (or other client application) and a web server with lower overhead than half-duplex alternatives such as HTTP polling, facilitating real-time data transfer from and to the server. This is made possible by providing a standardized way for the server to send content to the client without being first requested by the client, and allowing messages to be passed back and forth while keeping the connection open. 
+                            </p>   
+                        </article>
+                        <article class="col-12 col-md-6 reveal-2">
+                            <i class="fas fa-layer-group"></i>
+                            <p>A blockchain is a growing list of records, called BLOCKS, that are linked together using cryptography. Each block contains a cryptographic hash of the previous BLOCK, a timestamp, and transaction data. Blockchains are typically managed by a peer-to-peer network for use as a publicly distributed ledger, where nodes collectively adhere to a protocol to communicate and validate new blocks. Therefore, blockchains are resistant to modification of their data because once recorded, the data in any given block cannot be altered retroactively without altering all subsequent blocks. BITQAP blocks consist of BLOCKS in TEXT format. A change to the ASN.1 BER encoding is planned for the future. Currently BITQAP blocks contain HEADER, TRANSACTIONS and SIGNATURE of the BLOCK miner. The miners will confirm the signature of the REWARD transactions and the signature of the block miner.</p> 
+                        </article>
+                        <article class="col-12 col-md-6 reveal-2">
+                            <i class="fab fa-connectdevelop"></i>
+                            <p>BITQAP protocol is decentralized network on top of WebSocket.  We choose most famous HTTP upgraded protocol to be easy full duplex integration any modern devices. The WebSocket protocol enables interaction between a web browser (or other client application) and a web server with lower overhead than half-duplex alternatives such as HTTP polling, facilitating real-time data transfer from and to the server. This is made possible by providing a standardized way for the server to send content to the client without being first requested by the client, and allowing messages to be passed back and forth while keeping the connection open. Most browsers support the WebSocket protocol, including Google Chrome, Firefox, Microsoft Edge, Internet Explorer, Safari and Opera. </p>   
+                        </article>
+                        <article class="col-12 col-md-6 reveal-2">
+                            <i class="fas fa-exchange-alt"></i>
+                            <p>The BITQAP protocol supports the exchange of information with its neighbors. BITQAP information is transaction, BLOCKS and connection messages.  The transaction message contains the TX ID, the PubKeyHASH(sha256) of the sender and receiver, the coin amount, the transaction fee, the sender's public key and the signature by the sender's private key in BASE64 format.  The contents of the shared BLOCK are also encoded using BASE64. These terms can also be used for technologies other than cryptocurrencies, such as identity management, supply chains, reconciliation, etc.  </p>   
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Team section -->
+            <section id="team" class="page-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 reveal-2">
+                            <p class="page-subtitle">Meet our team and contributors</p>
+                            <h2 class="page-title">Team</h2>
+                        </div>
+                       <!--  <div class="col-12 col-md-4 reveal-2">
+                            <article class="card">
+                                <img src="https://via.placeholder.com/150x150" alt="John Doe picture">
+                                <h3>John Doe</h3>
+                                <h4>CEO</h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil id quasi impedit. Totam, laborum accusamus.</p>
+                                <p>
+                                    <a target="_blank" href="#"><i class="fab fa-linkedin-in"></i></a>
+                                    <a target="_blank" href="#"><i class="fab fa-twitter"></i></a>     
+                                </p>   
+                            </article>
+                        </div>  -->
+                        <div style="margin:0 auto;" class="col-12 col-md-4 reveal-3">
+                            <article class="card">
+                                <!--<img src="https://via.placeholder.com/150x150" alt="John Doe picture"> -->
+                                <img src="img/profile/img150.jpeg" width="150" height="150" ;alt="Fariz Muradov">
+                                <h3>FARIZ MURADOV</h3>
+                                <h4>CEO | CTO | Maintainer</h4>
+                                <p>Open Source System Enginner <br> NewTech researcher</p>
+                                <p>
+                                    <a target="_blank" href="https://www.linkedin.com/in/fariz-muradov-b100a268/"><i class="fab fa-linkedin-in"></i></a>
+                                    <a target="_blank" href="https://twitter.com/fariz2201"><i class="fab fa-twitter"></i></a>     
+                                </p>        
+                            </article>
+                        </div>
+                        <div style="margin:0 auto;" class="col-12 col-md-4 reveal-3">
+                            <article class="card">
+                                <!--<img src="https://via.placeholder.com/150x150" alt="John Doe picture"> -->
+                                <img src="https://via.placeholder.com/150x150" width="150" height="150" ;alt="Fariz Muradov">
+                                <h3>Next you</h3>
+                                <h4>Someone else</h4>
+                                <p>Most contributor<br>Open Source Lover</p>
+				<p>
+                                    <a target="_blank" href="#"><i class="fab fa-linkedin-in"></i></a>
+                                    <a target="_blank" href="#"><i class="fab fa-twitter"></i></a> 
+                                </p>        
+                            </article>
+                        </div>
+                        <!-- <div class="col-12 col-md-4 reveal-4">
+                            <article class="card">
+                                <img src="https://via.placeholder.com/150x150" alt="John Doe picture">
+                                <h3>Darth Vader</h3>
+                                <h4>CMO</h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil id quasi impedit. Totam, laborum accusamus.</p>
+                                <p>
+                                    <a target="_blank" href="#"><i class="fab fa-linkedin-in"></i></a>
+                                    <a target="_blank" href="#"><i class="fab fa-twitter"></i></a>     
+                                </p>             
+                            </article>
+                        </div> -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Partners section 
+            <section id="partners" class="page-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 reveal-2">
+                            <p class="page-subtitle">They support us</p>
+                            <h2 class="page-title">Our partners</h2>
+                        </div>
+                        <article class="col-12 reveal-2">
+                            <div class="partners-slider">
+                                <div class="partners-slider-item">
+                                    <img class="img-fluid" src="img/partners/1.png" alt="Partner 1">
+                                </div>
+                                <div class="partners-slider-item">
+                                    <img class="img-fluid" src="img/partners/2.png" alt="Partner 2">
+                                </div>
+                                <div class="partners-slider-item">
+                                    <img class="img-fluid" src="img/partners/3.png" alt="Partner 3">
+                                </div>
+                                <div class="partners-slider-item">
+                                    <img class="img-fluid" src="img/partners/4.png" alt="Partner 4">
+                                </div>
+                                <div class="partners-slider-item">
+                                    <img class="img-fluid" src="img/partners/1.png" alt="Partner 1">
+                                </div>
+                                <div class="partners-slider-item">
+                                    <img class="img-fluid" src="img/partners/2.png" alt="Partner 2">
+                                </div>
+                                <div class="partners-slider-item">
+                                    <img class="img-fluid" src="img/partners/3.png" alt="Partner 3">
+                                </div>
+                                <div class="partners-slider-item">
+                                    <img class="img-fluid" src="img/partners/4.png" alt="Partner 4">
+                                </div>
+                              </div>
+                        </article>
+                    </div>
+                </div>
+            </section> -->
+
+            
+            <!-- Roadmap section -->
+            <section id="roadmap" class="page-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 reveal-2">
+                            <p class="page-subtitle">Our future developement</p>
+                            <h2 class="page-title">Roadmap</h2>
+                        </div>
+                        <div class="col-12 col-md-4 reveal-2">
+                            <h3>2022 - Q1</h3>
+                            <article class="card">
+                                <ul>
+                                    <li><i class="fas fa-check"></i> Mining Blocks.</li>
+                                    <li><i class="fas fa-check"></i> Coin sending.</li>
+                                    <li><i class="fas fa-check"></i> BITQAP p2p protocol.</li>
+                                    <li><i class="fas fa-check"></i> Message propagate.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Node management scripts.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Mobile Wallet development.</li>
+                                    
+                                </ul>                        
+                            </article>
+                        </div>
+                        <div class="col-12 col-md-4 reveal-2">
+                            <h3>2022 - Q2</h3>
+                            <article class="card">
+                                <ul>
+                                    <li><i class="fas fa-chevron-right"></i> Refactoring codes.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Stabilize.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Test all known scenarios.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Fault Tolerance.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Performance improvement.</li>
+                                </ul>                       
+                            </article>
+                        </div>
+                        <div class="col-12 col-md-4 reveal-2">
+                            <h3>2022 - Q3</h3>
+                            <article class="card"> 
+                                <ul>
+                                    <li><i class="fas fa-chevron-right"></i> Commercialize.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Customize.</li>
+                                    <li><i class="fas fa-chevron-right"></i> API extentions.</li>
+                                    <li><i class="fas fa-chevron-right"></i> Documenting.</li>
+                                </ul>                       
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="donate" class="page-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 reveal-2">
+                            <p class="page-subtitle">Support us</p>
+                            <h2 class="page-title">DONATION</h2>
+                        </div>
+                        <div style="margin:0 auto;" class="col-12 col-md-4 reveal-3">
+                        <img src="img/donation/Your_Bitcoin_QR_Code.png" width="150" height="150" ;alt="bitcoin" >
+                        <img src="img/donation/Your_Ethereum_QR_Code.png" width="150" height="150" ;alt="etherium">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+
+
+            <!-- Ressources section -->
+            <section id="ressources" class="page-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 reveal-2">
+                            <p class="page-subtitle">Download, Mine, send coins.</p>
+                            <h2 class="page-title">Resources</h2>
+                        </div>
+                        <article class="col-6 col-md-4 reveal-2">
+                            <h3><i class="fas fa-wallet"></i> Wallet</h3>
+                            <ul>
+                                <li><a href="#">Coming soon.</a></li>
+                            </ul>
+                        </article>
+                        <article class="col-6 col-md-4 reveal-2">
+                            <h3><i class="fas fa-exchange-alt"></i> Exchanges</h3>
+                            <ul>
+                                <li><a href="#">Not defined yet.</a></li>
+                                <li><a href="#">But there is plan.</a></li>
+                            </ul>
+                        </article>
+                        <article class="col-6 col-md-4 reveal-2">
+                            <h3><i class="fas fa-store"></i> Stores</h3>
+                            <ul>
+                                <li><a href="#">Internet.</a></li>
+                            </ul>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- Main Footer -->
+            <footer class="main-footer">
+                <div class="container">
+                    <div class="row">
+                        <article class="col-12 col-md-3">
+                            <h3>Navigation</h3>
+                            <ul>
+                                <li><a href="#about">About us</a></li>
+                                <li><a href="#features">Features</a></li>
+                                <li><a href="#team">Team</a></li>
+                                <li><a href="#roadmap">Roadmap</a></li>
+                            </ul>
+                        </article>
+                        <article class="col-12 col-md-3">
+                            <h3>Ressources</h3>
+                            <ul>
+                                <li><a href="#">Wallet</a></li>
+                                <li><a href="#">Exchanges</a></li>
+                                <li><a href="#">Stores</a></li>
+                            </ul>
+                        </article>
+                        <article class="col-12 col-md-3">
+                            <h3>Exchanges</h3>
+                            <ul>
+                                <li><a href="#">No exchange yet.</a></li>
+                            </ul>
+                        </article>
+                        <article class="col-12 col-md-3">
+                            <h3>Community</h3>
+                            <ul>
+                                <li><a href="https://t.me/+EfTDaMmRdtk5OWEy">News</a></li>
+                                <li><a href="https://github.com/bitqap/bitqap">Contribute</a></li>
+                            </ul>
+                        </article>
+                        <div class="col-12">
+                            <hr>   
+                        </div>
+                        <div class="col-12 col-md-6 social">
+                            <p>
+                                <!-- <a target="_blank" href="https://twitter.com/middle_agency"><i class="fab fa-twitter"></i></a> -->
+                                <!--<a target="_blank" href="#"><i class="fab fa-discord"></i></a> -->
+                                <a target="_blank" href="https://t.me/+EfTDaMmRdtk5OWEy"><i class="fab fa-telegram-plane"></i></a>
+                                <!-- <a target="_blank" href="#"><i class="fab fa-reddit-alien"></i></a> -->
+                                <a target="_blank" href="https://github.com/bitqap/bitqap"><i class="fab fa-github"></i></a>                         
+                            </p>
+                        </div>
+                        <div class="col-12 col-md-6 copyright">
+                            <p>&copy; 2021 BITQAP</p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+        <!-- PopperJS & Bootstrap CDN -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <!-- Slick -->
+        <script type="text/javascript" src="libs/slick/slick.min.js"></script>
+        <script>
+            $('.partners-slider').slick({
+                dots: false,
+                infinite: true,
+                speed: 300,
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 2000,
+                responsive: [
+                  {
+                    breakpoint: 1024,
+                    settings: {
+                      slidesToShow: 3
+                    }
+                  },
+                  {
+                    breakpoint: 600,
+                    settings: {
+                      slidesToShow: 3
+                    }
+                  },
+                  {
+                    breakpoint: 480,
+                    settings: {
+                      slidesToShow: 2
+                    }
+                  }
+                ]
+            });
+        </script>
+        <!-- -->
+        <script src="js/app.js"></script>
+    </body>
+</html>
